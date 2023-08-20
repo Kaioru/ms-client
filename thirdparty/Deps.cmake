@@ -13,8 +13,8 @@ FetchContent_Declare(
 
 FetchContent_Declare(
   nlnx
-  GIT_REPOSITORY    https://github.com/filoper/NoLifeNx.git
-  GIT_TAG           0f485975a5d0b430270855fa59970f6b097ea793
+  GIT_REPOSITORY    https://github.com/Kaioru/nlnx
+  GIT_TAG           21ae12c5e6bdf01171c73ad1f56f5ff49ba4f366
   PREFIX            "${PROJECT_SOURCE_DIR}/thirdparty"
   SOURCE_DIR        "${PROJECT_SOURCE_DIR}/thirdparty/nlnx"
   BINARY_DIR        "${PROJECT_SOURCE_DIR}/thirdparty/nlnx-build"
@@ -31,7 +31,7 @@ FetchContent_Declare(
 FetchContent_Declare(
   asio
   GIT_REPOSITORY    https://github.com/chriskohlhoff/asio.git
-  GIT_TAG           5fb2ea03ac6df7d65fc0101745e01ecff0bbd5fe
+  GIT_TAG           1f8d154829b902dbc45a651587c6c6df948358e8
   PREFIX            "${PROJECT_SOURCE_DIR}/thirdparty"
   SOURCE_DIR        "${PROJECT_SOURCE_DIR}/thirdparty/asio"
 )

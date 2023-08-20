@@ -216,6 +216,14 @@ set_property(TARGET msclient PROPERTY CXX_STANDARD_REQUIRED ON)
 add_clang_format_target()
 set_project_warnings(${PROJECT_NAME})
 
+IF (APPLE)
+  if (CMAKE_SYSTEM_PROCESSOR MATCHES "(arm64)")
+    target_include_directories(msclient SYSTEM PRIVATE /opt/homebrew/Cellar/glfw/3.3.8/include)
+  ELSE()
+    target_include_directories(msclient SYSTEM PRIVATE /usr/local/Cellar/glfw/3.3.8/include)
+  ENDIF()
+ENDIF ()
+
 target_include_directories(msclient 
   PRIVATE
     .
@@ -246,7 +254,6 @@ target_include_directories(msclient
     ${PROJECT_SOURCE_DIR}/thirdparty/stb
 
     $<$<PLATFORM_ID:Darwin>:${PROJECT_SOURCE_DIR}/thirdparty/bass24-osx>
-    $<$<PLATFORM_ID:Darwin>:/usr/local/Cellar/glfw/3.3.2/include>
 
     $<$<PLATFORM_ID:Linux>:${PROJECT_SOURCE_DIR}/thirdparty/bass24-linux>
 
@@ -262,10 +269,18 @@ target_link_libraries(msclient
     NoLifeNx
 )
 
+IF (APPLE)
+  if (CMAKE_SYSTEM_PROCESSOR MATCHES "(arm64)")
+    target_link_libraries(msclient /opt/homebrew/Cellar/lz4/1.9.4/lib/liblz4.a)
+    target_link_libraries(msclient /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.dylib)
+  ELSE()
+    target_link_libraries(msclient /usr/local/Cellar/lz4/1.9.4/lib/liblz4.a)
+    target_link_libraries(msclient /usr/local/Cellar/glfw/3.3.8/lib/libglfw.dylib)
+  ENDIF()
+ENDIF ()
+
 target_link_libraries(msclient 
       $<$<PLATFORM_ID:Darwin>:${PROJECT_SOURCE_DIR}/thirdparty/bass24-osx/libbass.dylib>
-      $<$<PLATFORM_ID:Darwin>:/usr/local/Cellar/lz4/1.9.3/lib/liblz4.a>
-      $<$<PLATFORM_ID:Darwin>:/usr/local/Cellar/glfw/3.3.2/lib/libglfw.dylib>
 
       $<$<PLATFORM_ID:Linux>:${PROJECT_SOURCE_DIR}/thirdparty/bass24-linux/x64/libbass.so>
       $<$<PLATFORM_ID:Linux>:/usr/lib/x86_64-linux-gnu/libglfw.so>

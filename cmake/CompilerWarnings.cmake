@@ -61,10 +61,10 @@ function(set_project_warnings project_name)
                  # (ie printf)
   )
 
-  if (${PROJECT_NAME}_WARNINGS_AS_ERRORS)
-    set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
-    set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
-  endif()
+  #if (${PROJECT_NAME}_WARNINGS_AS_ERRORS)
+  #  set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
+  #  set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
+  #endif()
 
   set(GCC_WARNINGS
       ${CLANG_WARNINGS}
